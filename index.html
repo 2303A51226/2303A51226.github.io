@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume — V Savanth Reddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --text: #1a1a18;
+      --muted: #6b6b65;
+      --line: #e4e4df;
+      --serif: 'DM Serif Display', serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+
+    header {
+      margin-bottom: 3.5rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2.5rem;
+    }
+
+    .name {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 1.4rem;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .contact a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact a:hover { color: var(--text); border-color: var(--text); }
+
+    section { margin-bottom: 2.8rem; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0 1.5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-title {
+      font-size: 0.975rem;
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+
+    .entry-sub {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .entry-desc {
+      font-size: 0.875rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .entry-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 0.1rem;
+      text-align: right;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--line);
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-tag:hover { border-color: var(--text); color: var(--text); }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--line);
+      margin-bottom: 2.8rem;
+    }
+
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    @media print {
+      body { background: white; }
+      .page { padding: 2rem; }
+    }
+
+    @media (max-width: 540px) {
+      .entry { grid-template-columns: 1fr; }
+      .entry-date { text-align: left; margin-top: 0.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <h1 class="name">V Savanth Reddy</h1>
+      <p class="tagline">B.Tech Computer Science Student · SR University · Open to Internships</p>
+      <div class="contact">
+        <a href="/cdn-cgi/l/email-protection#8af9ebfcebe4fee2f8efeeeef3bbb8b9bebfcaede7ebe3e6a4e9e5e7"><span class="__cf_email__" data-cfemail="9be8faedfaf5eff3e9feffffe2aaa9a8afaedbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></a>
+        <span>+91 88856 18759</span>
+        <span>Warangal, Telangana</span>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section>
+      <p class="section-label">About</p>
+      <p class="about-text">
+        Motivated computer science student at SR University with hands-on experience building
+        web applications and AI-powered tools. Passionate about solving real-world problems
+        through technology. Certified in cloud computing and networking, and actively seeking
+        internship opportunities to grow as a developer.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Education -->
+    <section>
+      <p class="section-label">Education</p>
+      <div class="entry">
+        <div class="entry-main">
+          <p class="entry-title">B.Tech in Computer Science &amp; Engineering</p>
+          <p class="entry-sub">SR University, Warangal</p>
+          <p class="entry-desc">CGPA: 6.5 / 10 &nbsp;·&nbsp; Relevant coursework: Data Structures &amp; Algorithms, DBMS, Operating Systems, Computer Networks</p>
+        </div>
+        <div class="entry-date">2023 – 2027</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-main">
+          <p class="entry-title">Intermediate (MPC)</p>
+          <p class="entry-sub">Narayana Junior College</p>
+          <p class="entry-desc">Percentage: 75%</p>
+        </div>
+        <div class="entry-date">2021 – 2023</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-main">
+          <p class="entry-title">SSC (Class X)</p>
+          <p class="entry-sub">Teja International High School</p>
+          <p class="entry-desc">GPA: 10 / 10</p>
+        </div>
+        <div class="entry-date">2020 – 2021</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Projects -->
+    <section>
+      <p class="section-label">Projects</p>
+
+      <div class="entry">
+        <div class="entry-main">
+          <p class="entry-title">Trails &amp; Treats</p>
+          <p class="entry-sub">Web Development · College Project</p>
+          <p class="entry-desc">Designed and developed a full website as a college project, focusing on clean UI, responsive layout, and smooth user experience.</p>
+        </div>
+        <div class="entry-date">2024</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-main">
+          <p class="entry-title">Shopping GPT</p>
+          <p class="entry-sub">AI-Powered Application</p>
+          <p class="entry-desc">Built an AI-powered shopping assistant that helps users discover and compare products using natural language queries.</p>
+        </div>
+        <div class="entry-date">2024</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Skills -->
+    <section>
+      <p class="section-label">Skills</p>
+      <div class="skills-grid">
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Data Structures &amp; Algorithms</span>
+        <span class="skill-tag">Problem Solving</span>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Certifications -->
+    <section>
+      <p class="section-label">Certifications</p>
+
+      <div class="entry">
+        <div class="entry-main">
+          <p class="entry-title">AWS Academy Cloud Foundations</p>
+          <p class="entry-sub">Amazon Web Services (AWS Academy)</p>
+          <p class="entry-desc">Cloud computing fundamentals, AWS core services, security, architecture, pricing, and support models.</p>
+        </div>
+        <div class="entry-date">2024</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-main">
+          <p class="entry-title">CCNA: Introduction to Networks</p>
+          <p class="entry-sub">Cisco Networking Academy</p>
+          <p class="entry-desc">Networking fundamentals including IP addressing, Ethernet, routing and switching concepts.</p>
+        </div>
+        <div class="entry-date">2024</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-main">
+          <p class="entry-title">Virtual Internship Program</p>
+          <p class="entry-sub">EduSkills Academy</p>
+          <p class="entry-desc">Completed a structured virtual internship covering industry-relevant technical an
