@@ -2,288 +2,1117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resume — V Savanth Reddy</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>V Savanth Reddy | Computer Science Student</title>
+  <meta name="description" content="Portfolio of V Savanth Reddy, a B.Tech computer science student at SR University who builds web apps, AI tools and 3D games. Open to internships." />
+  <meta name="theme-color" content="#2F7D4E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232F7D4E'/%3E%3Ccircle cx='16' cy='25' r='3' fill='%23fff'/%3E%3Cpath d='M16 6v15' stroke='%23fff' stroke-width='2'/%3E%3Cpath d='M16 6l8 4-8 4z' fill='%23D8412F'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Figtree:wght@300..800&display=swap" rel="stylesheet" />
+
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #fafaf8;
-      --text: #1a1a18;
-      --muted: #6b6b65;
-      --line: #e4e4df;
-      --serif: 'DM Serif Display', serif;
-      --sans: 'DM Sans', sans-serif;
+      --paper: #EFF4E9;
+      --paper-2: #E3EBDB;
+      --ink: #12301F;
+      --muted: #4D6556;
+      --line: #C9D6C4;
+      --turf: #2F7D4E;
+      --turf-deep: #1F5E3B;
+      --sand: #E4CC8F;
+      --flag: #D8412F;
+      --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+      --body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color-scheme: light;
     }
+
+    :root[data-theme="dark"] {
+      --paper: #0E1B14;
+      --paper-2: #14271C;
+      --ink: #E8F1E4;
+      --muted: #9DB4A5;
+      --line: #274236;
+      --turf-deep: #1A5A39;
+      color-scheme: dark;
+    }
+
+    html { scroll-padding-top: 5rem; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-weight: 300;
-      line-height: 1.7;
-      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background .3s, color .3s;
     }
 
-    .page {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 5rem 2rem 6rem;
+    a { color: inherit; }
+    ul, ol { list-style: none; }
+
+    :focus-visible { outline: 3px solid var(--flag); outline-offset: 3px; border-radius: 4px; }
+
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem); }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    .skip {
+      position: absolute; left: 1rem; top: -4rem; z-index: 100;
+      background: var(--ink); color: var(--paper); padding: .6rem 1rem; border-radius: 8px;
+    }
+    .skip:focus { top: 1rem; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .7rem 1.2rem; border-radius: 999px;
+      font: 600 .95rem/1.2 var(--body);
+      border: 1.5px solid var(--ink); cursor: pointer; text-decoration: none;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-solid { background: var(--ink); color: var(--paper); }
+    .btn-solid:hover { background: var(--turf); border-color: var(--turf); color: #fff; }
+    .btn-line { background: transparent; color: var(--ink); }
+    .btn-line:hover { background: var(--ink); color: var(--paper); }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in srgb, var(--paper) 82%, transparent);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4rem; }
+    .brand { font: 800 1.25rem var(--display); letter-spacing: -.02em; text-decoration: none; }
+    .nav-links { display: none; gap: 1.6rem; font-size: .95rem; font-weight: 500; }
+    .nav-links a { text-decoration: none; color: var(--muted); padding: .25rem 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a[aria-current="true"] { color: var(--ink); border-color: var(--turf); }
+    @media (min-width: 900px) { .nav-links { display: flex; } }
+
+    .nav-actions { display: flex; align-items: center; gap: .6rem; }
+    .jump {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .45rem .5rem .45rem .9rem; border-radius: 999px;
+      border: 1.5px solid var(--line); background: transparent; color: var(--ink);
+      font: 500 .9rem var(--body); cursor: pointer; transition: border-color .2s;
+    }
+    .jump:hover { border-color: var(--ink); }
+    .jump kbd {
+      font: 600 .75rem var(--body); padding: .15rem .5rem; border-radius: 999px;
+      background: var(--paper-2); color: var(--muted);
+    }
+    .icon-btn {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%; display: grid; place-items: center;
+      border: 1.5px solid var(--line); background: transparent; color: var(--ink); cursor: pointer;
+      transition: border-color .2s;
+    }
+    .icon-btn:hover { border-color: var(--ink); }
+
+    .progress { position: relative; height: 3px; }
+    .progress-bar { position: absolute; inset: 0; background: var(--turf); transform-origin: left; transform: scaleX(var(--p, 0)); }
+    .progress-ball {
+      position: absolute; top: -4px; left: calc(var(--p, 0) * (100% - 11px));
+      width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 2px solid var(--turf);
     }
 
-    header {
-      margin-bottom: 3.5rem;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 2.5rem;
-    }
-
+    /* Hero */
+    .hero { padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem); }
     .name {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 6vw, 3.4rem);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 0.5rem;
+      font-family: var(--display); font-weight: 800; font-stretch: 82%;
+      font-size: clamp(3.4rem, 13.5vw, 10.5rem);
+      line-height: .88; letter-spacing: -.035em;
     }
+    .name span { display: block; }
+    .name span:last-child { padding-left: .9em; color: var(--turf); }
+    :root[data-theme="dark"] .name span:last-child { color: #5FBF86; }
 
-    .tagline {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 300;
-      margin-bottom: 1.4rem;
+    .hero-meta {
+      display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.5rem;
+      margin-top: clamp(1.5rem, 3vw, 2.5rem);
     }
+    .lede { font: 500 clamp(1.15rem, 2vw, 1.5rem)/1.4 var(--display); max-width: 28em; letter-spacing: -.005em; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: .7rem; }
 
-    .contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem 1.5rem;
-      font-size: 0.875rem;
-      color: var(--muted);
+    .course { margin: 2.5rem 0 2.5rem; }
+    .course-title { font: 700 1.35rem/1.2 var(--display); letter-spacing: -.015em; margin-bottom: 1rem; }
+    #green {
+      display: block; width: 100%; border-radius: 24px; touch-action: none; cursor: grab;
+      box-shadow: 0 24px 50px -24px rgba(18, 48, 31, .55);
     }
-
-    .contact a {
-      color: var(--muted);
-      text-decoration: none;
-      border-bottom: 1px solid var(--line);
-      transition: color 0.2s, border-color 0.2s;
+    #green:active { cursor: grabbing; }
+    #green:focus-visible { outline-offset: 5px; border-radius: 24px; }
+    .course-bar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: .8rem 1.5rem; margin-top: 1rem; font-size: .95rem; color: var(--muted);
     }
+    .course-stats { display: flex; gap: 1.5rem; color: var(--ink); font-weight: 500; }
+    .course-stats strong { font-weight: 800; font-family: var(--display); font-size: 1.1rem; }
+    .course-hint { flex: 1 1 22rem; max-width: 40rem; }
+    .course-status { flex-basis: 100%; min-height: 1.5em; color: var(--turf); font-weight: 700; }
+    :root[data-theme="dark"] .course-status { color: #5FBF86; }
 
-    .contact a:hover { color: var(--text); border-color: var(--text); }
-
-    section { margin-bottom: 2.8rem; }
-
-    .section-label {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.2rem;
+    /* Sections */
+    .section { padding: clamp(3.5rem, 8vw, 7rem) 0; border-top: 1px solid var(--line); }
+    .section-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .section h2 { font: 700 1.9rem/1.1 var(--display); letter-spacing: -.02em; }
+    @media (min-width: 860px) {
+      .section-grid { grid-template-columns: 220px minmax(0, 1fr); gap: 3rem; }
+      .section h2 { position: sticky; top: 5.5rem; align-self: start; }
     }
+    .muted { color: var(--muted); }
 
-    .entry {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0 1.5rem;
-      margin-bottom: 1.6rem;
+    /* About */
+    .about-lead { font: 500 clamp(1.35rem, 2.6vw, 2rem)/1.35 var(--display); letter-spacing: -.01em; max-width: 30em; }
+    .facts { display: grid; grid-template-columns: 1fr; gap: 1.2rem 2rem; margin-top: 2.5rem; }
+    @media (min-width: 640px) { .facts { grid-template-columns: 1fr 1fr; } }
+    .facts dt { font-size: .9rem; color: var(--muted); }
+    .facts dd { font-weight: 600; }
+
+    /* Projects */
+    .feature {
+      background: var(--turf-deep); color: #F3F7EE; border-radius: 28px;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      display: grid; gap: 2rem; align-items: center;
+      transition: outline-color .2s;
     }
+    @media (min-width: 900px) { .feature { grid-template-columns: 1.1fr .9fr; } }
+    .feature :focus-visible { outline-color: #fff; }
+    .feature h3 { font: 800 clamp(2rem, 4vw, 3rem)/1 var(--display); letter-spacing: -.03em; font-stretch: 85%; }
+    .kind { margin: .5rem 0 1.2rem; opacity: .8; }
+    .feature p + p { margin-top: .8rem; }
+    .feature-points { margin: 1.2rem 0; display: grid; gap: .6rem; }
+    .feature-points li { padding-left: 1.4rem; position: relative; }
+    .feature-points li::before { content: ""; position: absolute; left: 0; top: .7em; width: .6rem; height: 2px; background: var(--sand); }
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0; }
+    .tags li { font-size: .85rem; font-weight: 500; padding: .2rem .8rem; border-radius: 999px; border: 1px solid currentColor; opacity: .85; }
+    .links { display: flex; flex-wrap: wrap; gap: .7rem; }
+    .btn-onturf { background: #F3F7EE; color: #12301F; border-color: #F3F7EE; }
+    .btn-onturf:hover { background: transparent; color: #F3F7EE; }
+    .btn-outturf { background: transparent; color: #F3F7EE; border-color: rgba(243, 247, 238, .6); }
+    .btn-outturf:hover { background: #F3F7EE; color: #12301F; }
+    .feature-art { width: 100%; height: auto; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .35)); }
 
-    .entry:last-child { margin-bottom: 0; }
+    .row { padding: 2rem 0; border-top: 1px solid var(--line); display: grid; gap: .6rem 2rem; transition: outline-color .2s; }
+    @media (min-width: 700px) { .row { grid-template-columns: 1fr 5rem; } .row .when { text-align: right; } }
+    .row h3, .cert h3, .timeline h3 { font: 700 1.35rem/1.2 var(--display); letter-spacing: -.015em; }
+    .row .tags li, .cert .tags li { opacity: 1; color: var(--muted); border-color: var(--line); }
+    .when { color: var(--muted); font-size: .95rem; }
 
-    .entry-title {
-      font-size: 0.975rem;
-      font-weight: 500;
-      margin-bottom: 0.15rem;
+    .is-linked { outline: 3px solid var(--flag); outline-offset: 8px; }
+
+    /* Skills */
+    .skills-note { color: var(--muted); margin-bottom: 2rem; }
+    .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.2rem 2.5rem; }
+    .skill-group h3 { font: 700 1.1rem var(--display); margin-bottom: .8rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .chips li {
+      font-size: .9rem; font-weight: 500; padding: .3rem .9rem; border-radius: 999px;
+      border: 1.5px solid var(--line); transition: background .2s, color .2s, border-color .2s;
     }
+    .chips li:hover, .chips li:focus-visible { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .chips li[data-for] { cursor: default; border-color: var(--turf); }
 
-    .entry-sub {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
+    /* Education */
+    .timeline { border-left: 2px solid var(--line); margin-left: .4rem; }
+    .timeline li { position: relative; padding: 0 0 2.4rem 1.8rem; }
+    .timeline li:last-child { padding-bottom: 0; }
+    .timeline li::before {
+      content: ""; position: absolute; left: -.52rem; top: .35rem; width: .9rem; height: .9rem;
+      border-radius: 50%; background: var(--paper); border: 3px solid var(--turf);
     }
+    .timeline .when { margin-bottom: .2rem; }
+    .timeline p + p { margin-top: .3rem; }
 
-    .entry-desc {
-      font-size: 0.875rem;
-      color: #444;
-      line-height: 1.6;
+    /* Certifications */
+    .cert { padding: 1.8rem 0; border-top: 1px solid var(--line); display: grid; gap: .5rem 2rem; }
+    .cert:first-child { padding-top: 0; border-top: 0; }
+    @media (min-width: 700px) { .cert { grid-template-columns: 1fr 5rem; } .cert .when { text-align: right; } }
+    .issuer { color: var(--muted); }
+
+    /* Contact */
+    .mail {
+      display: inline-block; font: 800 clamp(1.5rem, 5.2vw, 3.6rem)/1.05 var(--display);
+      letter-spacing: -.03em; font-stretch: 85%; text-decoration: none; word-break: break-word;
+      background: linear-gradient(var(--turf), var(--turf)) 0 100% / 100% 4px no-repeat;
+      padding-bottom: .15em; transition: background-size .25s, color .2s;
     }
+    .mail:hover { background-size: 100% 100%; color: #fff; }
+    .contact-facts { margin: 2rem 0; display: grid; gap: .3rem; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
 
-    .entry-date {
-      font-size: 0.8rem;
-      color: var(--muted);
-      white-space: nowrap;
-      padding-top: 0.1rem;
-      text-align: right;
+    footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: .95rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; }
+
+    /* Command palette */
+    #palette {
+      margin: 12vh auto auto; width: min(560px, calc(100% - 2rem));
+      border: 1.5px solid var(--line); border-radius: 18px; padding: 0;
+      background: var(--paper); color: var(--ink);
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .5);
     }
-
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    #palette::backdrop { background: rgba(10, 25, 17, .5); backdrop-filter: blur(4px); }
+    #pal-input {
+      width: 100%; padding: 1.1rem 1.3rem; font: 500 1.05rem var(--body); color: inherit;
+      background: transparent; border: 0; border-bottom: 1.5px solid var(--line); outline: none;
     }
+    #pal-input:focus-visible { outline: none; box-shadow: inset 0 -3px 0 var(--turf); border-radius: 0; }
+    #pal-list { max-height: 50vh; overflow-y: auto; padding: .5rem; }
+    #pal-list li { display: flex; justify-content: space-between; gap: 1rem; padding: .65rem .85rem; border-radius: 10px; cursor: pointer; }
+    #pal-list li small { color: var(--muted); font-size: .85rem; }
+    #pal-list li[aria-selected="true"] { background: var(--turf); color: #fff; }
+    #pal-list li[aria-selected="true"] small { color: rgba(255, 255, 255, .85); }
+    #pal-list li.empty { cursor: default; color: var(--muted); }
+    .pal-help { padding: .7rem 1.3rem; border-top: 1.5px solid var(--line); font-size: .85rem; color: var(--muted); }
 
-    .skill-tag {
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--muted);
-      background: transparent;
-      border: 1px solid var(--line);
-      padding: 0.3rem 0.85rem;
-      border-radius: 100px;
-      transition: border-color 0.2s, color 0.2s;
+    .toast {
+      position: fixed; left: 50%; bottom: 1.5rem; transform: translate(-50%, 150%);
+      background: var(--ink); color: var(--paper); padding: .7rem 1.2rem; border-radius: 999px;
+      font-weight: 600; font-size: .95rem; z-index: 200; transition: transform .3s; pointer-events: none;
     }
+    .toast.show { transform: translate(-50%, 0); }
 
-    .skill-tag:hover { border-color: var(--text); color: var(--text); }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--line);
-      margin-bottom: 2.8rem;
-    }
-
-    .about-text {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #444;
+    @media (max-width: 540px) {
+      .jump span { display: none; }
+      .jump { padding-left: .5rem; }
     }
 
     @media print {
-      body { background: white; }
-      .page { padding: 2rem; }
-    }
-
-    @media (max-width: 540px) {
-      .entry { grid-template-columns: 1fr; }
-      .entry-date { text-align: left; margin-top: 0.2rem; }
+      .nav, .course, .toast, #palette, .skip, .contact-actions, .skills-note, .feature-art { display: none !important; }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      .section { padding: 1.4rem 0; break-inside: avoid; }
+      .section h2 { position: static; }
+      .hero { padding: 1rem 0; }
+      .name { font-size: 3rem; }
+      .name span:last-child { color: #000; }
+      .feature { background: none; color: #000; border: 1px solid #999; border-radius: 8px; padding: 1rem; }
+      .feature-points li::before { background: #000; }
+      .mail { background: none; font-size: 1.4rem; }
+      a { text-decoration: none; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
+  <a class="skip" href="#about">Skip to content</a>
 
-    <header>
-      <h1 class="name">V Savanth Reddy</h1>
-      <p class="tagline">B.Tech Computer Science Student · SR University · Open to Internships</p>
-      <div class="contact">
-        <a href="/cdn-cgi/l/email-protection#8af9ebfcebe4fee2f8efeeeef3bbb8b9bebfcaede7ebe3e6a4e9e5e7"><span class="__cf_email__" data-cfemail="9be8faedfaf5eff3e9feffffe2aaa9a8afaedbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></a>
-        <span>+91 88856 18759</span>
-        <span>Warangal, Telangana</span>
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a class="brand" href="#top">Savanth</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="jump" id="open-palette" type="button" aria-haspopup="dialog">
+          <span>Jump to</span><kbd id="kbd-hint">Ctrl K</kbd>
+        </button>
+        <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+        </button>
       </div>
-    </header>
+    </div>
+    <div class="progress" aria-hidden="true"><span class="progress-bar"></span><span class="progress-ball"></span></div>
+  </header>
 
-    <!-- About -->
-    <section>
-      <p class="section-label">About</p>
-      <p class="about-text">
-        Motivated computer science student at SR University with hands-on experience building
-        web applications and AI-powered tools. Passionate about solving real-world problems
-        through technology. Certified in cloud computing and networking, and actively seeking
-        internship opportunities to grow as a developer.
-      </p>
-    </section>
+  <main>
+    <section class="hero" id="top">
+      <div class="wrap">
+        <h1 class="name"><span>V Savanth</span> <span>Reddy</span></h1>
 
-    <div class="divider"></div>
-
-    <!-- Education -->
-    <section>
-      <p class="section-label">Education</p>
-      <div class="entry">
-        <div class="entry-main">
-          <p class="entry-title">B.Tech in Computer Science &amp; Engineering</p>
-          <p class="entry-sub">SR University, Warangal</p>
-          <p class="entry-desc">CGPA: 6.5 / 10 &nbsp;·&nbsp; Relevant coursework: Data Structures &amp; Algorithms, DBMS, Operating Systems, Computer Networks</p>
+        <div class="hero-meta">
+          <p class="lede">Computer science student building web apps, AI tools and 3D games. Open to internships.</p>
+          <div class="hero-links">
+            <a class="btn btn-solid" href="#projects">See my projects</a>
+            <a class="btn btn-line" href="https://github.com/2303A51226" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-line" href="https://www.linkedin.com/in/v-savanth-reddy-00a154295/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-line" href="https://leetcode.com/u/v_savanth_reddy/" target="_blank" rel="noopener">LeetCode</a>
+          </div>
         </div>
-        <div class="entry-date">2023 – 2027</div>
-      </div>
 
-      <div class="entry">
-        <div class="entry-main">
-          <p class="entry-title">Intermediate (MPC)</p>
-          <p class="entry-sub">Narayana Junior College</p>
-          <p class="entry-desc">Percentage: 75%</p>
-        </div>
-        <div class="entry-date">2021 – 2023</div>
-      </div>
-
-      <div class="entry">
-        <div class="entry-main">
-          <p class="entry-title">SSC (Class X)</p>
-          <p class="entry-sub">Teja International High School</p>
-          <p class="entry-desc">GPA: 10 / 10</p>
-        </div>
-        <div class="entry-date">2020 – 2021</div>
       </div>
     </section>
 
-    <div class="divider"></div>
-
-    <!-- Projects -->
-    <section>
-      <p class="section-label">Projects</p>
-
-      <div class="entry">
-        <div class="entry-main">
-          <p class="entry-title">Trails &amp; Treats</p>
-          <p class="entry-sub">Web Development · College Project</p>
-          <p class="entry-desc">Designed and developed a full website as a college project, focusing on clean UI, responsive layout, and smooth user experience.</p>
+    <section class="section" id="about">
+      <div class="wrap section-grid">
+        <h2>About</h2>
+        <div>
+          <p class="about-lead">Motivated computer science student at SR University with hands-on experience building web applications and AI-powered tools. I also design and build 3D games in Unity. I like solving real-world problems with technology, and I'm looking for an internship where I can keep growing as a developer.</p>
+          <dl class="facts">
+            <div><dt>Studying</dt><dd>B.Tech in Computer Science &amp; Engineering, SR University</dd></div>
+            <div><dt>Based in</dt><dd>Warangal, Telangana</dd></div>
+            <div><dt>Certified in</dt><dd>AWS Cloud Foundations and CCNA: Introduction to Networks</dd></div>
+            <div><dt>Looking for</dt><dd>Internships</dd></div>
+          </dl>
         </div>
-        <div class="entry-date">2024</div>
-      </div>
-
-      <div class="entry">
-        <div class="entry-main">
-          <p class="entry-title">Shopping GPT</p>
-          <p class="entry-sub">AI-Powered Application</p>
-          <p class="entry-desc">Built an AI-powered shopping assistant that helps users discover and compare products using natural language queries.</p>
-        </div>
-        <div class="entry-date">2024</div>
       </div>
     </section>
 
-    <div class="divider"></div>
+    <section class="section" id="projects">
+      <div class="wrap section-grid">
+        <h2>Projects</h2>
+        <div>
+          <article class="feature" id="p-minigolf">
+            <div>
+              <h3>Mini Golf 3D</h3>
+              <p class="kind">3D game, college project</p>
+              <p>Designed and developed a 3D Mini Golf game using Unity as a college project, featuring interactive gameplay and realistic golf mechanics.</p>
+              <ul class="feature-points">
+                <li>Created 5 challenging levels with unique obstacles, smooth ball controls, and engaging environments.</li>
+                <li>Focused on 3D game design, physics-based interactions, and an enjoyable user experience.</li>
+              </ul>
+              <ul class="tags" aria-label="Technologies">
+                <li>Unity</li><li>C#</li><li>3D game design</li><li>Physics</li>
+              </ul>
+              <div class="links">
+                <a class="btn btn-onturf" href="https://github.com/2303A51226/MY-UNITY-GAME-MINIGOLF2303A51226" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn btn-outturf" href="https://docs.google.com/document/d/1nqQtwpLMvgYh2op9__VWLpckzm2nrInkpV__KIDp7zg/edit?usp=sharing" target="_blank" rel="noopener">Documentation</a>
+              </div>
+            </div>
 
-    <!-- Skills -->
-    <section>
-      <p class="section-label">Skills</p>
-      <div class="skills-grid">
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">GitHub</span>
-        <span class="skill-tag">Data Structures &amp; Algorithms</span>
-        <span class="skill-tag">Problem Solving</span>
+            <svg class="feature-art" viewBox="0 0 420 280" aria-hidden="true">
+              <rect width="420" height="280" rx="22" fill="#6B4226"/>
+              <rect x="14" y="14" width="392" height="252" rx="12" fill="#2F7D4E"/>
+              <g fill="#348555">
+                <rect x="14" y="14" width="49" height="252"/><rect x="112" y="14" width="49" height="252"/>
+                <rect x="210" y="14" width="49" height="252"/><rect x="308" y="14" width="49" height="252"/>
+              </g>
+              <rect x="180" y="80" width="70" height="120" rx="30" fill="#E4CC8F"/>
+              <rect x="150" y="14" width="16" height="140" fill="#EDE6D3" stroke="#B8AE92"/>
+              <rect x="262" y="110" width="16" height="156" fill="#EDE6D3" stroke="#B8AE92"/>
+              <path d="M52 160 C110 225 190 225 214 160 C235 100 290 60 352 128" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 11"/>
+              <circle cx="360" cy="136" r="11" fill="#0B1A12"/>
+              <path d="M360 136V88" stroke="#fff" stroke-width="3"/>
+              <path d="M360 88l24 9-24 9z" fill="#D8412F"/>
+              <circle cx="52" cy="160" r="8" fill="#fff"/>
+            </svg>
+          </article>
+
+          <figure class="course" id="play">
+            <h3 class="course-title">Try a quick hole</h3>
+            <canvas id="green" tabindex="0" role="application"
+              aria-label="Playable mini golf green. Drag back from the ball and release to putt, or use the arrow keys to aim, hold Space to charge and release to shoot."></canvas>
+            <figcaption class="course-bar">
+              <div class="course-stats">
+                <span>Strokes <strong id="strokes">0</strong></span>
+                <span>Best <strong id="best">none yet</strong></span>
+              </div>
+              <p class="course-hint">Putt into the hole. Drag back from the ball and let go. On a keyboard, use the arrow keys to aim, hold Space to charge, release to shoot.</p>
+              <button class="btn btn-line" id="reset" type="button">Restart hole</button>
+              <p class="course-status" id="game-status" role="status" aria-live="polite"></p>
+            </figcaption>
+          </figure>
+
+          <article class="row" id="p-trails">
+            <div>
+              <h3>Trails &amp; Treats</h3>
+              <p>Designed and developed a full website as a college project, focusing on clean UI, responsive layout, and smooth user experience.</p>
+              <ul class="tags" aria-label="Focus areas" style="margin-bottom:0"><li>Web development</li><li>College project</li><li>Responsive layout</li></ul>
+            </div>
+            <p class="when">2024</p>
+          </article>
+
+          <article class="row" id="p-shopping">
+            <div>
+              <h3>Shopping GPT</h3>
+              <p>Built an AI-powered shopping assistant that helps users discover and compare products using natural language queries.</p>
+              <ul class="tags" aria-label="Focus areas" style="margin-bottom:0"><li>AI application</li><li>Natural language search</li></ul>
+            </div>
+            <p class="when">2024</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <div class="divider"></div>
-
-    <!-- Certifications -->
-    <section>
-      <p class="section-label">Certifications</p>
-
-      <div class="entry">
-        <div class="entry-main">
-          <p class="entry-title">AWS Academy Cloud Foundations</p>
-          <p class="entry-sub">Amazon Web Services (AWS Academy)</p>
-          <p class="entry-desc">Cloud computing fundamentals, AWS core services, security, architecture, pricing, and support models.</p>
+    <section class="section" id="skills">
+      <div class="wrap section-grid">
+        <h2>Skills</h2>
+        <div>
+          <p class="skills-note">Hover over or tab to a green-outlined skill to see where it shows up on this page.</p>
+          <div class="skill-groups">
+            <div class="skill-group">
+              <h3>Programming languages</h3>
+              <ul class="chips">
+                <li>Java</li><li>Python</li><li>SQL</li><li>JavaScript</li><li tabindex="0" data-for="p-minigolf">C#</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Game development</h3>
+              <ul class="chips">
+                <li tabindex="0" data-for="p-minigolf">Unity</li>
+                <li tabindex="0" data-for="p-minigolf">3D Game Design</li>
+                <li tabindex="0" data-for="p-minigolf">Physics-Based Interactions</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Web development</h3>
+              <ul class="chips">
+                <li tabindex="0" data-for="p-trails">HTML5</li>
+                <li tabindex="0" data-for="p-trails">CSS3</li>
+                <li tabindex="0" data-for="p-trails">Responsive Design</li>
+                <li tabindex="0" data-for="p-trails">UI Design</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Cloud and networking</h3>
+              <ul class="chips">
+                <li tabindex="0" data-for="cert-aws">AWS Cloud Fundamentals</li>
+                <li tabindex="0" data-for="cert-ccna">Computer Networks</li>
+                <li tabindex="0" data-for="cert-ccna">IP Addressing</li>
+                <li tabindex="0" data-for="cert-ccna">Routing &amp; Switching</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Tools and core concepts</h3>
+              <ul class="chips">
+                <li>Git</li><li>GitHub</li><li>Unity</li><li>Blender</li><li>Visual Studio</li><li>C#</li>
+                <li>Data Structures &amp; Algorithms</li><li>DBMS</li><li>Operating Systems</li><li>Problem Solving</li>
+                <li tabindex="0" data-for="p-shopping">AI Tool Integration</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="entry-date">2024</div>
       </div>
+    </section>
 
-      <div class="entry">
-        <div class="entry-main">
-          <p class="entry-title">CCNA: Introduction to Networks</p>
-          <p class="entry-sub">Cisco Networking Academy</p>
-          <p class="entry-desc">Networking fundamentals including IP addressing, Ethernet, routing and switching concepts.</p>
+    <section class="section" id="education">
+      <div class="wrap section-grid">
+        <h2>Education</h2>
+        <ol class="timeline">
+          <li>
+            <p class="when">2023 – 2027</p>
+            <h3>B.Tech in Computer Science &amp; Engineering</h3>
+            <p>SR University, Warangal</p>
+            <p class="muted">CGPA 6.5 / 10. Coursework: Data Structures &amp; Algorithms, DBMS, Operating Systems, Computer Networks.</p>
+          </li>
+          <li>
+            <p class="when">2021 – 2023</p>
+            <h3>Intermediate (MPC)</h3>
+            <p>Narayana Junior College</p>
+            <p class="muted">75%</p>
+          </li>
+          <li>
+            <p class="when">2020 – 2021</p>
+            <h3>SSC (Class X)</h3>
+            <p>Teja International High School</p>
+            <p class="muted">GPA 10 / 10</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="certifications">
+      <div class="wrap section-grid">
+        <h2>Certifications</h2>
+        <div>
+          <article class="cert" id="cert-aws">
+            <div>
+              <h3>AWS Academy Cloud Foundations</h3>
+              <p class="issuer">Amazon Web Services (AWS Academy)</p>
+              <p>Cloud computing fundamentals, AWS core services, security, architecture, pricing, and support models.</p>
+            </div>
+            <p class="when">2024</p>
+          </article>
+          <article class="cert" id="cert-ccna">
+            <div>
+              <h3>CCNA: Introduction to Networks</h3>
+              <p class="issuer">Cisco Networking Academy</p>
+              <p>Networking fundamentals including IP addressing, Ethernet, routing and switching concepts.</p>
+            </div>
+            <p class="when">2024</p>
+          </article>
+          <article class="cert" id="cert-intern">
+            <div>
+              <h3>Virtual Internship Program</h3>
+              <p class="issuer">EduSkills Academy</p>
+              <p>Completed a structured virtual internship covering industry-relevant technical and professional skills.</p>
+            </div>
+            <p class="when">2024</p>
+          </article>
         </div>
-        <div class="entry-date">2024</div>
       </div>
+    </section>
 
-      <div class="entry">
-        <div class="entry-main">
-          <p class="entry-title">Virtual Internship Program</p>
-          <p class="entry-sub">EduSkills Academy</p>
-          <p class="entry-desc">Completed a structured virtual internship covering industry-relevant technical an
+    <section class="section" id="contact">
+      <div class="wrap section-grid">
+        <h2>Contact</h2>
+        <div>
+          <a class="mail" id="mail" href="mailto:savanthreddy12345@gmail.com">savanthreddy12345@gmail.com</a>
+          <div class="contact-facts">
+            <p>+91 88856 18759</p>
+            <p class="muted">Warangal, Telangana</p>
+          </div>
+          <div class="contact-actions">
+            <button class="btn btn-solid" id="copy-email" type="button">Copy email</button>
+            <button class="btn btn-line" id="print" type="button">Save as PDF</button>
+            <a class="btn btn-line" href="https://www.linkedin.com/in/v-savanth-reddy-00a154295/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-line" href="https://github.com/2303A51226" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>V Savanth Reddy, 2026</span>
+      <span>Press <span id="kbd-foot">Ctrl K</span> to jump anywhere.</span>
+    </div>
+  </footer>
+
+  <dialog id="palette" aria-label="Jump to">
+    <input id="pal-input" type="text" role="combobox" aria-expanded="true" aria-controls="pal-list"
+      aria-autocomplete="list" placeholder="Jump to a section, link or action" autocomplete="off" spellcheck="false" />
+    <ul id="pal-list" role="listbox" aria-label="Results"></ul>
+    <p class="pal-help">Up and down arrows to move, Enter to open, Esc to close.</p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* ---------- Shared helpers ---------- */
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const EMAIL = 'savanthreddy12345@gmail.com';
+    const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+    document.getElementById('kbd-hint').textContent = isMac ? '⌘K' : 'Ctrl K';
+    document.getElementById('kbd-foot').textContent = isMac ? '⌘K' : 'Ctrl K';
+
+    const toastEl = document.getElementById('toast');
+    let toastTimer;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+    }
+
+    function setTheme(t) {
+      document.documentElement.dataset.theme = t;
+      try { localStorage.setItem('theme', t); } catch (e) {}
+    }
+    function toggleTheme() {
+      setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+    }
+    document.getElementById('theme').addEventListener('click', toggleTheme);
+
+    async function copyEmail() {
+      try {
+        await navigator.clipboard.writeText(EMAIL);
+        toast('Email address copied');
+      } catch (e) {
+        toast('Copy failed. Select the address and copy it manually.');
+      }
+    }
+    document.getElementById('copy-email').addEventListener('click', copyEmail);
+    document.getElementById('print').addEventListener('click', () => window.print());
+
+    /* ---------- Scroll progress and active section ---------- */
+    (function () {
+      let ticking = false;
+      function update() {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+        document.documentElement.style.setProperty('--p', p.toFixed(4));
+        ticking = false;
+      }
+      addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      update();
+
+      const links = [...document.querySelectorAll('.nav-links a')];
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          links.forEach((a) => {
+            if (a.getAttribute('href') === '#' + en.target.id) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
+          });
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      links.forEach((a) => {
+        const s = document.querySelector(a.getAttribute('href'));
+        if (s) io.observe(s);
+      });
+    })();
+
+    /* ---------- Skills highlight where they are used ---------- */
+    document.querySelectorAll('[data-for]').forEach((el) => {
+      const target = document.getElementById(el.dataset.for);
+      if (!target) return;
+      const on = () => target.classList.add('is-linked');
+      const off = () => target.classList.remove('is-linked');
+      el.addEventListener('mouseenter', on);
+      el.addEventListener('mouseleave', off);
+      el.addEventListener('focus', on);
+      el.addEventListener('blur', off);
+    });
+
+    /* ---------- Command palette ---------- */
+    (function () {
+      const dlg = document.getElementById('palette');
+      const input = document.getElementById('pal-input');
+      const list = document.getElementById('pal-list');
+      const go = (id) => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+      };
+      const ext = (url) => window.open(url, '_blank', 'noopener');
+
+      const items = [
+        { label: 'About', kind: 'Section', run: () => go('about') },
+        { label: 'Projects', kind: 'Section', run: () => go('projects') },
+        { label: 'Skills', kind: 'Section', run: () => go('skills') },
+        { label: 'Education', kind: 'Section', run: () => go('education') },
+        { label: 'Certifications', kind: 'Section', run: () => go('certifications') },
+        { label: 'Contact', kind: 'Section', run: () => go('contact') },
+        { label: 'Play mini golf', kind: 'Section', run: () => { go('play'); setTimeout(() => document.getElementById('green').focus({ preventScroll: true }), 500); } },
+        { label: 'GitHub profile', kind: 'Link', run: () => ext('https://github.com/2303A51226') },
+        { label: 'LinkedIn profile', kind: 'Link', run: () => ext('https://www.linkedin.com/in/v-savanth-reddy-00a154295/') },
+        { label: 'LeetCode profile', kind: 'Link', run: () => ext('https://leetcode.com/u/v_savanth_reddy/') },
+        { label: 'Mini Golf 3D on GitHub', kind: 'Link', run: () => ext('https://github.com/2303A51226/MY-UNITY-GAME-MINIGOLF2303A51226') },
+        { label: 'Mini Golf 3D documentation', kind: 'Link', run: () => ext('https://docs.google.com/document/d/1nqQtwpLMvgYh2op9__VWLpckzm2nrInkpV__KIDp7zg/edit?usp=sharing') },
+        { label: 'Switch theme', kind: 'Action', run: toggleTheme },
+        { label: 'Copy email address', kind: 'Action', run: copyEmail },
+        { label: 'Save as PDF', kind: 'Action', run: () => window.print() }
+      ];
+
+      let shown = items, idx = 0;
+
+      function render() {
+        const q = input.value.trim().toLowerCase();
+        shown = items.filter((i) => i.label.toLowerCase().includes(q) || i.kind.toLowerCase().includes(q));
+        if (idx >= shown.length) idx = 0;
+        list.innerHTML = '';
+        if (!shown.length) {
+          const li = document.createElement('li');
+          li.className = 'empty';
+          li.textContent = 'Nothing matches. Try a section name like Projects.';
+          list.appendChild(li);
+          input.removeAttribute('aria-activedescendant');
+          return;
+        }
+        shown.forEach((it, i) => {
+          const li = document.createElement('li');
+          li.id = 'pal-' + i;
+          li.setAttribute('role', 'option');
+          li.setAttribute('aria-selected', String(i === idx));
+          const a = document.createElement('span'); a.textContent = it.label;
+          const b = document.createElement('small'); b.textContent = it.kind;
+          li.append(a, b);
+          li.addEventListener('click', () => choose(i));
+          list.appendChild(li);
+        });
+        input.setAttribute('aria-activedescendant', 'pal-' + idx);
+        const sel = document.getElementById('pal-' + idx);
+        if (sel) sel.scrollIntoView({ block: 'nearest' });
+      }
+
+      function choose(i) {
+        const it = shown[i];
+        if (!it) return;
+        dlg.close();
+        setTimeout(it.run, 60);
+      }
+
+      function open() {
+        if (dlg.open) return;
+        input.value = '';
+        idx = 0;
+        render();
+        dlg.showModal();
+        input.focus();
+      }
+
+      input.addEventListener('input', () => { idx = 0; render(); });
+      input.addEventListener('keydown', (e) => {
+        if (!shown.length) return;
+        if (e.key === 'ArrowDown') { e.preventDefault(); idx = (idx + 1) % shown.length; render(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); idx = (idx - 1 + shown.length) % shown.length; render(); }
+        else if (e.key === 'Enter') { e.preventDefault(); choose(idx); }
+      });
+      dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+      document.getElementById('open-palette').addEventListener('click', open);
+      addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
+      });
+    })();
+
+    /* ---------- Playable mini golf green ---------- */
+    (function () {
+      const canvas = document.getElementById('green');
+      const ctx = canvas.getContext('2d');
+      const strokesEl = document.getElementById('strokes');
+      const bestEl = document.getElementById('best');
+      const statusEl = document.getElementById('game-status');
+
+      const R = 9, HOLE_R = 16, WALL = 14, H = 520;
+      const MAX_SPEED = 17, MAX_PULL = 150, REST = 0.82;
+      const STEP_MS = 1000 / 60;
+
+      let W = 1000, px = 1, course = null, ball = null;
+      let state = 'idle';          // idle, rolling, sinking, done
+      let strokes = 0, interacted = false, tick = 0;
+      let aim = { on: false, angle: 0, power: 0.3, src: null, charging: false, dir: 1 };
+      let sink = null, parts = [], focused = false, kbUsed = false;
+      let best = null;
+      try { best = parseInt(localStorage.getItem('mg-best'), 10) || null; } catch (e) {}
+
+      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+      function build(w) {
+        const hole = { x: w * 0.92, y: H * 0.5 };
+        const mill = { x: w * 0.79, y: H * 0.5, angle: 0.6 };
+        mill.len = Math.min(H * 0.17, (hole.x - mill.x) - HOLE_R - 12);
+        return {
+          rects: [
+            { x: w * 0.36, y: 0, w: w * 0.035, h: H * 0.52 },
+            { x: w * 0.62, y: H * 0.42, w: w * 0.035, h: H * 0.58 }
+          ],
+          sand: { x: w * 0.43, y: H * 0.3, w: w * 0.16, h: H * 0.4 },
+          hole, mill,
+          start: { x: w * 0.1, y: H * 0.5 }
+        };
+      }
+
+      function ui() {
+        strokesEl.textContent = strokes;
+        bestEl.textContent = best ? best : 'none yet';
+      }
+
+      function resetBall() {
+        ball = { x: course.start.x, y: course.start.y, vx: 0, vy: 0 };
+        state = 'idle'; strokes = 0; sink = null; parts = [];
+        aim.on = false; aim.charging = false; aim.power = 0.3; aim.angle = 0;
+        statusEl.textContent = '';
+        ui();
+      }
+
+      function resize() {
+        const cw = canvas.clientWidth;
+        if (!cw) return;
+        const nW = cw < 700 ? 600 : 1000;
+        if (!course || nW !== W) { W = nW; course = build(W); resetBall(); }
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.style.aspectRatio = W + ' / ' + H;
+        canvas.width = Math.round(cw * dpr);
+        canvas.height = Math.round(cw * dpr * H / W);
+        px = canvas.width / W;
+        draw();
+      }
+
+      /* ----- physics ----- */
+      function inSand() {
+        const s = course.sand;
+        return ball.x > s.x && ball.x < s.x + s.w && ball.y > s.y && ball.y < s.y + s.h;
+      }
+
+      function bounce(nx, ny, kick) {
+        const dot = ball.vx * nx + ball.vy * ny;
+        if (dot < 0) {
+          ball.vx -= (1 + REST) * dot * nx;
+          ball.vy -= (1 + REST) * dot * ny;
+        }
+        if (kick) { ball.vx += nx * kick; ball.vy += ny * kick; }
+      }
+
+      function collide() {
+        if (ball.x < WALL + R) { ball.x = WALL + R; bounce(1, 0); }
+        if (ball.x > W - WALL - R) { ball.x = W - WALL - R; bounce(-1, 0); }
+        if (ball.y < WALL + R) { ball.y = WALL + R; bounce(0, 1); }
+        if (ball.y > H - WALL - R) { ball.y = H - WALL - R; bounce(0, -1); }
+
+        for (const r of course.rects) {
+          const cx = clamp(ball.x, r.x, r.x + r.w), cy = clamp(ball.y, r.y, r.y + r.h);
+          let dx = ball.x - cx, dy = ball.y - cy;
+          const d = Math.hypot(dx, dy);
+          if (d >= R) continue;
+          let nx, ny;
+          if (d < 0.0001) {
+            const l = ball.x - r.x, rt = r.x + r.w - ball.x, t = ball.y - r.y, b = r.y + r.h - ball.y;
+            const m = Math.min(l, rt, t, b);
+            if (m === l) { nx = -1; ny = 0; ball.x = r.x - R; }
+            else if (m === rt) { nx = 1; ny = 0; ball.x = r.x + r.w + R; }
+            else if (m === t) { nx = 0; ny = -1; ball.y = r.y - R; }
+            else { nx = 0; ny = 1; ball.y = r.y + r.h + R; }
+          } else {
+            nx = dx / d; ny = dy / d;
+            ball.x = cx + nx * R; ball.y = cy + ny * R;
+          }
+          bounce(nx, ny);
+        }
+
+        const m = course.mill;
+        const ax = m.x + Math.cos(m.angle) * m.len, ay = m.y + Math.sin(m.angle) * m.len;
+        const bx = m.x - Math.cos(m.angle) * m.len, by = m.y - Math.sin(m.angle) * m.len;
+        const abx = bx - ax, aby = by - ay;
+        const t = clamp(((ball.x - ax) * abx + (ball.y - ay) * aby) / (abx * abx + aby * aby), 0, 1);
+        const qx = ax + abx * t, qy = ay + aby * t;
+        const dx = ball.x - qx, dy = ball.y - qy, d = Math.hypot(dx, dy);
+        const reach = R + 4;
+        if (d < reach) {
+          const nx = d > 0.0001 ? dx / d : 0, ny = d > 0.0001 ? dy / d : -1;
+          ball.x = qx + nx * reach; ball.y = qy + ny * reach;
+          bounce(nx, ny, 0.7);
+        }
+      }
+
+      function finish() {
+        state = 'done';
+        if (!best || strokes < best) {
+          best = strokes;
+          try { localStorage.setItem('mg-best', String(best)); } catch (e) {}
+        }
+        ui();
+        statusEl.textContent = strokes === 1
+          ? 'Hole in one! Press Restart hole to play again.'
+          : 'Holed out in ' + strokes + ' strokes. Press Restart hole to try for fewer.';
+        if (!reduceMotion) {
+          const colors = ['#D8412F', '#E4CC8F', '#FFFFFF', '#58A6C8', '#9BE0B4'];
+          for (let i = 0; i < 70; i++) {
+            const a = Math.random() * Math.PI * 2, s = 1.5 + Math.random() * 5;
+            parts.push({ x: course.hole.x, y: course.hole.y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: 1, c: colors[i % colors.length] });
+          }
+        }
+      }
+
+      function step() {
+        if (!reduceMotion) course.mill.angle += 0.022;
+
+        if (aim.charging) {
+          aim.power += 0.014 * aim.dir;
+          if (aim.power >= 1) { aim.power = 1; aim.dir = -1; }
+          if (aim.power <= 0.05) { aim.power = 0.05; aim.dir = 1; }
+        }
+
+        for (const p of parts) { p.x += p.vx; p.y += p.vy; p.vx *= 0.97; p.vy *= 0.97; p.life -= 0.014; }
+        parts = parts.filter((p) => p.life > 0);
+
+        if (state === 'rolling') {
+          for (let i = 0; i < 2; i++) {
+            ball.x += ball.vx / 2; ball.y += ball.vy / 2;
+            collide();
+          }
+          const f = inSand() ? 0.94 : 0.983;
+          ball.vx *= f; ball.vy *= f;
+          const sp = Math.hypot(ball.vx, ball.vy);
+          const dx = course.hole.x - ball.x, dy = course.hole.y - ball.y, d = Math.hypot(dx, dy);
+          if (d < HOLE_R - 2 && sp < 9) {
+            state = 'sinking'; sink = { t: 0, x: ball.x, y: ball.y };
+          } else if (d > 0.0001 && d < HOLE_R + 8 && sp < 12) {
+            ball.vx += dx / d * 0.16; ball.vy += dy / d * 0.16;
+          }
+          if (state === 'rolling' && sp < 0.12) { ball.vx = 0; ball.vy = 0; state = 'idle'; }
+        } else if (state === 'sinking') {
+          sink.t += 0.045;
+          const e = Math.min(1, sink.t * 1.4);
+          ball.x = sink.x + (course.hole.x - sink.x) * e;
+          ball.y = sink.y + (course.hole.y - sink.y) * e;
+          if (sink.t >= 1) finish();
+        }
+      }
+
+      /* ----- drawing ----- */
+      function rr(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+      }
+
+      function draw() {
+        if (!course) return;
+        ctx.setTransform(px, 0, 0, px, 0, 0);
+        ctx.clearRect(0, 0, W, H);
+
+        rr(0, 0, W, H, 24); ctx.fillStyle = '#6B4226'; ctx.fill();
+
+        ctx.save();
+        rr(WALL, WALL, W - 2 * WALL, H - 2 * WALL, 12); ctx.clip();
+
+        const stripes = 20, sw = W / stripes;
+        for (let i = 0; i < stripes; i++) {
+          ctx.fillStyle = i % 2 ? '#348555' : '#2F7D4E';
+          ctx.fillRect(i * sw, 0, sw + 1, H);
+        }
+
+        const s = course.sand;
+        rr(s.x, s.y, s.w, s.h, 26); ctx.fillStyle = '#E4CC8F'; ctx.fill();
+        ctx.fillStyle = '#C9AE6A';
+        for (let i = 0; i < 45; i++) {
+          const x = s.x + 12 + ((i * 53) % (s.w - 24)), y = s.y + 12 + ((i * 97) % (s.h - 24));
+          ctx.beginPath(); ctx.arc(x, y, 1.4, 0, 6.3); ctx.fill();
+        }
+
+        const hl = course.hole;
+        ctx.beginPath(); ctx.arc(hl.x, hl.y, HOLE_R + 3, 0, 6.3); ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fill();
+        ctx.beginPath(); ctx.arc(hl.x, hl.y, HOLE_R, 0, 6.3); ctx.fillStyle = '#0B1A12'; ctx.fill();
+
+        for (const r of course.rects) {
+          ctx.fillStyle = 'rgba(0,0,0,.28)'; ctx.fillRect(r.x + 5, r.y + 5, r.w, r.h);
+          ctx.fillStyle = '#EDE6D3'; ctx.fillRect(r.x, r.y, r.w, r.h);
+          ctx.strokeStyle = '#B8AE92'; ctx.lineWidth = 2; ctx.strokeRect(r.x, r.y, r.w, r.h);
+        }
+
+        const m = course.mill;
+        ctx.save();
+        ctx.translate(m.x, m.y);
+        ctx.beginPath(); ctx.arc(3, 4, 13, 0, 6.3); ctx.fillStyle = 'rgba(0,0,0,.28)'; ctx.fill();
+        ctx.rotate(m.angle);
+        rr(-m.len, -4, m.len * 2, 8, 4); ctx.fillStyle = '#F5F0E1'; ctx.fill();
+        ctx.strokeStyle = '#B8AE92'; ctx.lineWidth = 1.5; ctx.stroke();
+        ctx.rotate(-m.angle);
+        ctx.beginPath(); ctx.arc(0, 0, 8, 0, 6.3); ctx.fillStyle = '#D8412F'; ctx.fill();
+        ctx.restore();
+
+        let br = R;
+        if (state === 'sinking' || state === 'done') br = state === 'done' ? 0 : R * (1 - sink.t);
+        if (br > 0.5) {
+          ctx.beginPath(); ctx.ellipse(ball.x + 2, ball.y + 3, br, br * 0.85, 0, 0, 6.3); ctx.fillStyle = 'rgba(0,0,0,.28)'; ctx.fill();
+          const g = ctx.createRadialGradient(ball.x - br * 0.35, ball.y - br * 0.4, 1, ball.x, ball.y, br);
+          g.addColorStop(0, '#FFFFFF'); g.addColorStop(1, '#D6DDD3');
+          ctx.beginPath(); ctx.arc(ball.x, ball.y, br, 0, 6.3); ctx.fillStyle = g; ctx.fill();
+        }
+
+        if (!interacted && state === 'idle') {
+          const pulse = reduceMotion ? 10 : (Math.sin(tick * 0.06) * 0.5 + 0.5) * 16;
+          ctx.beginPath(); ctx.arc(ball.x, ball.y, R + 6 + pulse, 0, 6.3);
+          ctx.strokeStyle = 'rgba(255,255,255,' + (0.85 - pulse / 24).toFixed(2) + ')'; ctx.lineWidth = 2.5; ctx.stroke();
+        }
+
+        const wave = reduceMotion ? 0 : Math.sin(tick * 0.08) * 2.5;
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(hl.x, hl.y); ctx.lineTo(hl.x, hl.y - 58); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(hl.x, hl.y - 58); ctx.lineTo(hl.x + 28, hl.y - 49 + wave); ctx.lineTo(hl.x, hl.y - 40); ctx.closePath();
+        ctx.fillStyle = '#D8412F'; ctx.fill();
+
+        for (const p of parts) {
+          ctx.globalAlpha = Math.max(0, p.life); ctx.fillStyle = p.c;
+          ctx.fillRect(p.x - 3, p.y - 3, 6, 6);
+        }
+        ctx.globalAlpha = 1;
+
+        const showKb = focused && kbUsed;
+        if (state === 'idle' && (aim.on || showKb)) {
+          const pw = (aim.charging || aim.src === 'pointer') ? aim.power : 0.3;
+          const a = aim.angle, len = 36 + pw * 150;
+          const x1 = ball.x + Math.cos(a) * (R + 8), y1 = ball.y + Math.sin(a) * (R + 8);
+          const x2 = ball.x + Math.cos(a) * len, y2 = ball.y + Math.sin(a) * len;
+          ctx.setLineDash([2, 10]); ctx.lineCap = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(255,255,255,.92)';
+          ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.beginPath();
+          ctx.moveTo(x2 + Math.cos(a) * 10, y2 + Math.sin(a) * 10);
+          ctx.lineTo(x2 + Math.cos(a + 2.5) * 10, y2 + Math.sin(a + 2.5) * 10);
+          ctx.lineTo(x2 + Math.cos(a - 2.5) * 10, y2 + Math.sin(a - 2.5) * 10);
+          ctx.closePath(); ctx.fillStyle = '#fff'; ctx.fill();
+
+          if (aim.on || aim.charging) {
+            const bx = WALL + 18, by = H - WALL - 26;
+            rr(bx, by, 120, 9, 4.5); ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fill();
+            const pg = ctx.createLinearGradient(bx, 0, bx + 120, 0);
+            pg.addColorStop(0, '#E4CC8F'); pg.addColorStop(1, '#D8412F');
+            rr(bx, by, Math.max(9, 120 * pw), 9, 4.5); ctx.fillStyle = pg; ctx.fill();
+          }
+        }
+        ctx.restore();
+      }
+
+      /* ----- input ----- */
+      function toLogical(e) {
+        const r = canvas.getBoundingClientRect();
+        return { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height };
+      }
+      function aimFromPointer(p) {
+        const dx = ball.x - p.x, dy = ball.y - p.y;
+        aim.angle = Math.atan2(dy, dx);
+        aim.power = clamp(Math.hypot(dx, dy) / MAX_PULL, 0, 1);
+      }
+      function shoot(angle, power) {
+        const sp = 2.2 + power * (MAX_SPEED - 2.2);
+        ball.vx = Math.cos(angle) * sp; ball.vy = Math.sin(angle) * sp;
+        strokes++; interacted = true; state = 'rolling';
+        aim.on = false; aim.charging = false;
+        ui();
+      }
+
+      canvas.addEventListener('pointerdown', (e) => {
+        if (state !== 'idle') return;
+        const p = toLogical(e);
+        if (Math.hypot(p.x - ball.x, p.y - ball.y) > 90) return;
+        canvas.setPointerCapture(e.pointerId);
+        aim.on = true; aim.src = 'pointer'; interacted = true;
+        aimFromPointer(p);
+        e.preventDefault();
+      });
+      canvas.addEventListener('pointermove', (e) => {
+        if (aim.on && aim.src === 'pointer') aimFromPointer(toLogical(e));
+      });
+      canvas.addEventListener('pointerup', () => {
+        if (aim.on && aim.src === 'pointer') {
+          if (aim.power > 0.06) shoot(aim.angle, aim.power);
+          else aim.on = false;
+        }
+      });
+      canvas.addEventListener('pointercancel', () => { aim.on = false; });
+
+      canvas.addEventListener('focus', () => { focused = true; });
+      canvas.addEventListener('blur', () => { focused = false; aim.charging = false; });
+      canvas.addEventListener('keydown', (e) => {
+        if (state === 'done' && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); resetBall(); return; }
+        if (state !== 'idle') return;
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          e.preventDefault(); kbUsed = true; interacted = true; aim.src = 'key';
+          aim.angle += (e.key === 'ArrowRight' ? 1 : -1) * (e.shiftKey ? 0.015 : 0.06);
+        } else if (e.key === ' ') {
+          e.preventDefault();
+          if (!e.repeat) { kbUsed = true; interacted = true; aim.src = 'key'; aim.charging = true; aim.power = 0.05; aim.dir = 1; }
+        }
+      });
+      canvas.addEventListener('keyup', (e) => {
+        if (e.key === ' ' && aim.charging && state === 'idle') shoot(aim.angle, aim.power);
+      });
+
+      document.getElementById('reset').addEventListener('click', resetBall);
+
+      /* ----- loop (runs only while visible) ----- */
+      let running = false, last = 0, acc = 0;
+      function frame(ts) {
+        if (!running) return;
+        acc += Math.min(ts - last, 50); last = ts;
+        while (acc >= STEP_MS) { step(); acc -= STEP_MS; tick++; }
+        draw();
+        requestAnimationFrame(frame);
+      }
+      new IntersectionObserver((entries) => {
+        const vis = entries[0].isIntersecting;
+        if (vis && !running) { running = true; last = performance.now(); acc = 0; requestAnimationFrame(frame); }
+        else if (!vis) running = false;
+      }).observe(canvas);
+
+      let rz;
+      addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(resize, 120); });
+      resize();
+    })();
+  </script>
+</body>
+</html>
